@@ -1,5 +1,5 @@
 
-# WEBG301 - Ecommerce Project - GCD0905 - Truong_Linh_Thien
+# WEBG301 - Ecommerce Project - Tran Ngoc Thanh
 ## Authors
 ![GitHub contributors](https://img.shields.io/github/contributors/ThienDuc1112/GCD0905_WEBG301_Ecommercial_TLT?style=for-the-badge)
 - [Nguyen Van Truong](https://www.linkedin.com/in/nv-truong-314641220/)
