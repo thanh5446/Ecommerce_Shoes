@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block menu %}{% endblock %}
+{% block main %}
+    <div class="login_container">
+        <a class="log_home_btn" href="{{ path('main_page') }}">
+            <i class="fa-solid fa-house log_home_icon"></i>
+        </a>
+        <form action="{{ path('login') }}" method="post">
+            {% if error %}
+                <div class="error-message-form">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+            <h3 class="heading_bg">Please sign in</h3>
+            <label for="inputEmail" class="form-label">Email address</label>
+            <input type="email" name="_email" class="form-control" placeholder="Email address" required autofocus>
+            <label for="inputPassword" class="form-label">Password</label>
+            <input type="password" name="_password" class="form-control" placeholder="Password" required autofocus>
+            <button class="login_btn" type="submit">Sign in</button>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+            <a href="{{ path('register') }}" class="text_route_form">I'm new</a>
+        </form>
+    </div>
+{% endblock %}
+{% block footer_links %}{% endblock %}

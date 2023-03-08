@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    margin: 50px 100px;
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 15px;
+    padding: 16px;
+}
+
+.items {
+    height: 45vh;
+    border-radius: 8px;
+    background-color: aliceblue;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    border: aquamarine solid 1px;
+    padding-bottom: 20px;
+
+
+}
+
+img {
+    height: 75%;
+    padding-bottom: 15px;
+}
+
+.card_body {
+    margin-bottom: 20px;
+}
+
+.view {
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #5eb5e0;
+    color: #fff;
+    margin-top: 20px;
+}
+
+.bar {
+    font-size: 16px;
+    background-color: cyan;
+    margin-left: 30px;
+    line-height: 30px;
+    padding-top: 20px;
+    padding-left: 10px;
+    border: black solid 1px;
+}
+
+.row {
+    margin-top: 50px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding-top: 30px;
+    text-decoration: none;
+}
+
+.page-item {
+    text-align: center;
+    list-style-type: none;
+    padding: 8px;
+    margin: 3px;
+    background-color: #61dafb;
+
+}
+
+.page-item a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.search-bar {
+    margin-top: 30px;
+    padding: 0 100px;
+}
+
+.sort-button {
+    color: #FFFFFF;
+    padding: 10px 47px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-left: 8px;
+    transition: 0.6s;
+}
+
+.sort-button:hover ~.dropdown-list {
+    display: block;
+}
+
+.sort-button:hover{
+    background-color: #61dafb;
+}
+
+.sort-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 21%;
+    margin-top: 1%;
+    padding-top: 30px;
+}
+
+.dropdown-list {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 80px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-list a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-list a:hover {
+    background-color: #f1f1f1
+}
+
+.sort-dropdown:hover .dropdown-list {
+    display: block;
+}

@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+
+{% block customstylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/shop.css') }}">
+{% endblock %}
+
+{% block title %}Product shop{% endblock %}
+{% block main %}
+    <div class="shop_container">
+        <div class="shop_control_section">
+            <div class="sort-dropdown">
+                <button class="sort-button">Sort</button>
+                <div class="dropdown-list">
+                    <a href="{{ path(app.request.attributes.get('_route'),
+                        app.request.query.all|merge({'sort': 'Price', 'order': 'desc'})) }}">Sort by price: High to
+                        Low</a>
+                    <a href="{{ path(app.request.attributes.get('_route'),
+                        app.request.query.all|merge({'sort': 'Price', 'order': 'asc'})) }}">Sort by price: Low To
+                        High</a>
+                    <a href="{{ path(app.request.attributes.get('_route'),
+                        app.request.query.all|merge({'sort': 'id', 'order': 'desc'})) }}">Sort by newness</a>
+                </div>
+            </div>
+            <div class="shop_side_bar">
+                <form action={{ path('app_shop') }} method="get" class="shop_filter_form">
+                    <div>
+                    Category:
+                    <select name="cat">
+                        <option value="Sneaker" {{ (selectedCat=="Sneaker") ? 'selected' }}> Sneaker</option>
+                        <option value="Oxford" {{ (selectedCat=="Oxford") ? 'selected' }}> Oxford</option>
+                    </select>
+                    </div>
+                    <div class="label_checkbox">
+                        <input type="checkbox" name="brand[]" value="Nike" {{ (selectedBrand=="Nike") ? 'selected' }}>
+                        <label class="brand"> Nike
+                        </label>
+                            <input type="checkbox" name="brand[]" value="Adidas" {{ (selectedBrand=="Adidas") ? 'selected' }}">
+                        <label class="brand"> Adidas
+                        </label>
+                            <input type="checkbox" name="brand[]" value="Yeezy" {{ (selectedBrand=="Yeezy") ? 'selected' }}">
+                        <label class="brand"> Yeezy
+                        </label>
+{#                    Brand:#}
+{#                    <select name="brand">#}
+{#                        <option value="Nike" {{ (selectedBrand=="Nike") ? 'selected' }}> Nike</option>#}
+{#                        <option value="Charles" {{ (selectedBrand=="Charles") ? 'selected' }}> Charles</option>#}
+{#                    </select><br>#}
+{#                        <br>#}
+                    </div>
+                    <div class="shop_pricing_field">
+                    <label for="minPrice">Min:</label>
+                    <input type="number" name="minPrice">
+                    </div>
+                    <div class="shop_pricing_field">
+
+                        <label for="maxPrice">Max:</label>
+                        <input type="number" name="maxPrice">
+
+                    {#                <div class="row"> #}
+                    {#                    {% for item in listofproduct %} #}
+                    {#                    <div class="col-6"><h4> Brand List</h4> #}
+                    {#                        <a href="{{ path('app_shop2',{'brandName': item.brand})Nike }}" #}
+                    {#                    </div> #}
+                    {#                </div> #}
+                    </div>
+
+                    <button class="shop_filter_btn">
+                        Filter
+                    </button>
+                    <button class="shop_filter_btn">
+                    <a href="{{ path('app_shop') }}"
+                       class="shop_reset_text">Reset</a>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <h1 class="heading_bg">New releases</h1>
+            <div class="product_section">
+                <form action="" method="post" class="box">
+                {% for product in products %}
+
+                    <a href="{{ path('app_product_show', {'id': product.id}) }}" class="product-item">
+                        <img class="product-img" src="{{ asset('assets/images/'~product.Picture) }}" alt="">
+                        <p class="product-name">{{ product.Name }}</p>
+                        <div class="product-price">
+                            <p class="product-price__old">{{ product.Price + 10 }}$</p>
+                            <p class="product-price__new">{{ product.Price }}$</p>
+                        </div>
+                        <div class="product-favorite">
+                            <i class="fas fa-check product-favorite__ic"></i>
+                            <span class="product-favorite__text">Favorite</span>
+                        </div>
+
+                        <div class="product__action">
+                            <span class="product__like ">
+                                <i class="product__like-icon fas fa-heart "></i>
+                            </span>
+
+                            <div class="product__rating">
+                                {% set starActive =  random(1, 5) %}
+                                {% set starnot = 5 - starActive %}
+
+                                {% for i in 1..starActive %}
+                                    <i class="product__star--gold fas fa-star"></i>
+                                {% endfor %}
+
+                                {% if starActive != 5 %}
+                                    {% for i in 1..starnot %}
+                                        <i class=" fas fa-star"></i>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                            <span class="product__sold">{{ random(100, 1000) }} Sold</span>
+                        </div>
+
+
+                        <div class="product__origin">
+                            <span class="product__origin-brand">{{ product.Brand }}</span>
+                            <span class="product__origin-name">{{ random(['Ho Chi Minh', 'Ha Noi', 'Da Nang']) }}</span>
+                        </div>
+                    </a>
+                {% endfor %}
+                </form>
+            </div>
+
+        <div class="shop_page_num_section">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    {% for i in range(1, pageNumber) %}
+                        {% set style = app.request.get('pageId')==i ? "active" : "" %}
+                        <li class="page-item ">
+                            <a class="page-link"
+                               href={{ path(app.request.attributes.get('_route'),
+                                app.request.query.all|merge({'pageId': i})) }}>{{ i }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+{% endblock %}

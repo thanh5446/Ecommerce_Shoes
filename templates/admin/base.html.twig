@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block customstylesheets %} <link href="{{ asset('assets/css/Style.css') }}" rel="stylesheet"> {% endblock %}
+
+{% block title %} Admin area {% endblock %}
+{% block style %} {% endblock %}
+{% block menu %}
+
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <nav class="left-menu">
+            <h2>Menu</h2>
+            <ul class="list-management">
+                <li class="item-management">
+                    <a class="link" href="{{ path('main_page') }}">
+                        <i class=""></i>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="item-management">
+                    <a class="link" href="{{ path('admin_user_list') }}">
+                        <span class="title">Customer</span>
+                    </a>
+                </li>
+                <li class="item-management3">
+                    <a class="link" href="{{ path('admin_order_list') }}">
+                        <span class="title">Order</span>
+                    </a>
+                </li>
+                <li class="item-management2">
+                    <a class="link link__product" href="#">
+                        <i class=""></i>
+                        <span class="title">Product</span>
+                        <i class="fas fa-caret-down"></i>
+                    </a>
+                    <ul class="list-management">
+                        <li class="item-child"><a class="link" href="{{ path('admin_product_list') }}">List product</a></li>
+                        <li class="item-child"><a class="link" href="{{ path('admin_product_action') }}">Action</a></li>
+                        <li class="item-child"><a class="link" href="{{ path('admin_product_new') }}">Add Product</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+
+        <div class="left-content"></div>
+        <div class="right-content">
+            {% block rightContent %} {% endblock %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer_links %}
+{% endblock %}
+
