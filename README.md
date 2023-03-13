@@ -1,6 +1,5 @@
+# WEBG301 - Ecommerce Project - Tran Ngoc Thanh
 
-# WEBG301 - Ecommerce Project - Thanh
-------
 ## Table Of Content:
 1. [Initialize the project](#introduction)
 2. [Make View](#view)
